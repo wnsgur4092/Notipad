@@ -11,6 +11,8 @@
 		BF9BF20B29BC4DBA005178FB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BF20A29BC4DBA005178FB /* ContentView.swift */; };
 		BF9BF20D29BC4DBB005178FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF9BF20C29BC4DBB005178FB /* Assets.xcassets */; };
 		BF9BF21029BC4DBB005178FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF9BF20F29BC4DBB005178FB /* Preview Assets.xcassets */; };
+		BF9BF21A29BC4EAC005178FB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BF21929BC4EAC005178FB /* HomeView.swift */; };
+		BF9BF21C29BC5103005178FB /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BF21B29BC5103005178FB /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		BF9BF20A29BC4DBA005178FB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BF9BF20C29BC4DBB005178FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF9BF20F29BC4DBB005178FB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BF9BF21929BC4EAC005178FB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BF9BF21B29BC5103005178FB /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,9 @@
 			children = (
 				BF9BF20829BC4DBA005178FB /* NotipadApp.swift */,
 				BF9BF20A29BC4DBA005178FB /* ContentView.swift */,
+				BF9BF21829BC4E5A005178FB /* Model */,
+				BF9BF21729BC4E57005178FB /* ViewModel */,
+				BF9BF21629BC4E52005178FB /* View */,
 				BF9BF20C29BC4DBB005178FB /* Assets.xcassets */,
 				BF9BF20E29BC4DBB005178FB /* Preview Content */,
 			);
@@ -65,6 +72,29 @@
 				BF9BF20F29BC4DBB005178FB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BF9BF21629BC4E52005178FB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BF9BF21929BC4EAC005178FB /* HomeView.swift */,
+				BF9BF21B29BC5103005178FB /* CustomTextField.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BF9BF21729BC4E57005178FB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BF9BF21829BC4E5A005178FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +167,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF9BF21C29BC5103005178FB /* CustomTextField.swift in Sources */,
+				BF9BF21A29BC4EAC005178FB /* HomeView.swift in Sources */,
 				BF9BF20B29BC4DBA005178FB /* ContentView.swift in Sources */,
 				BF9BF20929BC4DBA005178FB /* NotipadApp.swift in Sources */,
 			);
