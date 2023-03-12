@@ -9,14 +9,18 @@ import Foundation
 import SwiftUI
 import Combine
 import RealmSwift
+import UserNotifications
 
 class TaskViewModel : ObservableObject {
     //MARK: - PROPERTIES
     let realm = try? Realm()
+    let notificationCenter = UNUserNotificationCenter.current()
     
     @Published var tasks : [Task] = []
     @Published var task : Task = Task()
+    
     @Published var taskName : String = ""
+    @Published var taskDate : Date = Date()
     
     
     var subscription = Set<AnyCancellable>()
@@ -27,8 +31,10 @@ class TaskViewModel : ObservableObject {
         $taskName.sink { taskName in
             self.updateTaskName(taskName: taskName)
         }.store(in: &subscription)
-
         
+        $taskDate.sink { taskDate in
+            self.updateTaskDate(date: taskDate)
+        }.store(in: &subscription)
     }
     
     //MARK: - FUNCTION
@@ -37,28 +43,48 @@ class TaskViewModel : ObservableObject {
         self.task.taskName = taskName
     }
     
-    func updateDate(date: Date){
+    func updateTaskDate(date: Date){
         self.task.date = date
     }
     
-    
+    //Save Data in Realm
     func saveTask() {
-        do{
-            try realm?.write{
-                realm?.add(tasks)
+        do {
+            try realm?.write {
+                realm?.add(task)
             }
-        }
-        catch {
+        } catch {
             print("\(error)")
         }
+        
+        task = Task()
         
         eraseForm()
     }
     
+    //Delete Data in Realm
     
     
-    func eraseForm() {
-        taskName = ""
+    //Send Notification
+    func sendNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Notipad"
+        content.body = taskName
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        notificationCenter.add(request) { error in
+            if let error = error {
+                print("Error Notification : \(error.localizedDescription)")
+            }
+        }
     }
     
+    
+    //initialise
+    func eraseForm() {
+        taskName = ""
+        task = Task() // 새로운 빈 Task로 재설정
+    }
 }
