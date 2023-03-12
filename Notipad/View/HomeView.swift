@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct HomeView: View {
     //MARK: - PROPERTIES
-    @State var text : String = ""
+    @StateObject var taskViewModel : TaskViewModel = TaskViewModel()
+    
     @State var isFocusing : Bool = false
     
     //MARK: - BODY
@@ -17,8 +19,6 @@ struct HomeView: View {
 
             VStack{
                 title
-                
-                Divider()
                 
                 Spacer()
                 
@@ -37,16 +37,23 @@ struct HomeView: View {
                 .font(.system(size: 48).bold())
             
             Spacer()
+            
+            Button {
+                print("List Tapped")
+            } label: {
+                Image(systemName: "list.bullet")
+            }
+
         }
     }
     
     fileprivate var textfield : some View{
         ZStack{
             HStack{
-                TextField("Enter ", text: $text)
+                TextField("Enter ", text: $taskViewModel.taskName)
                 
                 Button {
-                    print("Tapped")
+                    taskViewModel.saveTask()
                 } label: {
                     Image(systemName: "paperplane.circle.fill")
                         .resizable()
