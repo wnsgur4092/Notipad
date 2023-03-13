@@ -9,10 +9,17 @@ import SwiftUI
 
 @main
 struct NotipadApp: App {
+    
+    @AppStorage("isOnboarding") var isOnboarding : Bool = true
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(TaskViewModel())
+            if isOnboarding == true{
+                OnBoardingView()
+            } else {
+                ContentView()
+                    .environmentObject(TaskViewModel())
+            }
         }
     }
 }

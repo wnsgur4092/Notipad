@@ -22,6 +22,13 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
     @Published var taskName : String = ""
     @Published var taskDate : Date = Date()
     
+    @Published var isPermissionGranted : Bool = false{
+        didSet {
+            if isPermissionGranted {
+                askPermission()
+            }
+        }
+    }
     
     var subscription = Set<AnyCancellable>()
     
@@ -29,7 +36,7 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
     override init(){
         super.init()
         self.fetchTask()
-   
+        
         print("-----> \(Realm.Configuration.defaultConfiguration.fileURL!)")
         
         $taskName.sink { taskName in
@@ -41,7 +48,7 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
         }.store(in: &subscription)
         
         UNUserNotificationCenter.current().delegate = self
-  
+        
     }
     
     //MARK: - FUNCTION
@@ -61,8 +68,8 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
         let results = realm.objects(Task.self).sorted(byKeyPath: "date", ascending: false)
         tasks = Array(results)
     }
-
-
+    
+    
     
     //Save Data in Realm
     func saveTask() {
@@ -79,20 +86,6 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
         eraseForm()
     }
     
-    //Delete Data in Realm
-//    func deleteTask(){
-//        func deleteTask(at offsets: IndexSet) {
-//            guard let realm = realm else { return }
-//            do {
-//                try realm.write {
-//                    // Delete the selected tasks from the realm database
-//                    realm.delete(offsets.map { self.tasks[$0] })
-//                }
-//            } catch {
-//                print("Error deleting tasks: \(error)")
-//            }
-//        }
-//    }
     func deleteTask(task: Task) {
         guard let realm = realm else { return }
         do {
@@ -137,22 +130,22 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
         
         let content = UNMutableNotificationContent()
         content.title = title
-        content.body = taskName 
+        content.body = taskName
         content.sound = UNNotificationSound.default
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
     }
-
-
-
     
-
+    
+    
+    
+    
     
     // 포그라운드에서 알림을 표시하는 함수
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.banner, .sound, .badge, .list]) // 알림 센터에 유지되도록 .list 옵션 추가
     }
-
+    
     
 }
