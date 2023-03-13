@@ -24,6 +24,8 @@ struct HomeView: View {
                 
                 textfield
                 
+                requesetButton
+                
                 Spacer()
             }
             .padding(.horizontal,32)
@@ -53,7 +55,12 @@ struct HomeView: View {
                 TextField("Enter ", text: $taskViewModel.taskName)
                 
                 Button {
+                    taskViewModel.sendNotification(date: Date(), type: "time", timeInterval: 0.2, title: "Notipad", body: $taskViewModel.taskName.wrappedValue)
+                    
                     taskViewModel.saveTask()
+      
+
+
                 } label: {
                     Image(systemName: "paperplane.circle.fill")
                         .resizable()
@@ -68,6 +75,15 @@ struct HomeView: View {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color.gray, lineWidth: 1)
         )
+    }
+    
+    fileprivate var requesetButton : some View{
+        Button {
+            taskViewModel.askPermission()
+        } label: {
+            Text("Not working?")
+        }
+
     }
     
 }
