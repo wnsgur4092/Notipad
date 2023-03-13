@@ -15,5 +15,10 @@ class Task : Object, Identifiable, Codable{
     @Persisted var id : UUID = UUID()
     @Persisted var taskName : String = ""
     @Persisted var date : Date = Date()
+    @Persisted var isSelected : Bool = false
+    
+    override static func primaryKey() -> String? {
+         return "id"
+    }
 }
 

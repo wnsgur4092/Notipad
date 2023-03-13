@@ -12,7 +12,6 @@
 		BF9BF20D29BC4DBB005178FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF9BF20C29BC4DBB005178FB /* Assets.xcassets */; };
 		BF9BF21029BC4DBB005178FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF9BF20F29BC4DBB005178FB /* Preview Assets.xcassets */; };
 		BF9BF21A29BC4EAC005178FB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BF21929BC4EAC005178FB /* HomeView.swift */; };
-		BF9BF21C29BC5103005178FB /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BF21B29BC5103005178FB /* CustomTextField.swift */; };
 		BFCB227D29BDE7B4004DB993 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = BFCB227C29BDE7B4004DB993 /* Realm */; };
 		BFCB227F29BDE7B4004DB993 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BFCB227E29BDE7B4004DB993 /* RealmSwift */; };
 		BFCB228129BDE7C2004DB993 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCB228029BDE7C2004DB993 /* Task.swift */; };
@@ -28,11 +27,9 @@
 		BF9BF20C29BC4DBB005178FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF9BF20F29BC4DBB005178FB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BF9BF21929BC4EAC005178FB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		BF9BF21B29BC5103005178FB /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		BFCB228029BDE7C2004DB993 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		BFCB228229BDE84D004DB993 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		BFCB228429BDF299004DB993 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		BFCB228629BDFC2B004DB993 /* Notipad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Notipad.entitlements; sourceTree = "<group>"; };
 		BFCB228829BEC357004DB993 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,7 +65,6 @@
 		BF9BF20729BC4DBA005178FB /* Notipad */ = {
 			isa = PBXGroup;
 			children = (
-				BFCB228629BDFC2B004DB993 /* Notipad.entitlements */,
 				BF9BF20829BC4DBA005178FB /* NotipadApp.swift */,
 				BF9BF20A29BC4DBA005178FB /* ContentView.swift */,
 				BFCB228729BEC344004DB993 /* Handler */,
@@ -94,7 +90,6 @@
 			children = (
 				BF9BF21929BC4EAC005178FB /* HomeView.swift */,
 				BFCB228429BDF299004DB993 /* HistoryView.swift */,
-				BF9BF21B29BC5103005178FB /* CustomTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -202,7 +197,6 @@
 			files = (
 				BFCB228529BDF299004DB993 /* HistoryView.swift in Sources */,
 				BFCB228929BEC357004DB993 /* NotificationHandler.swift in Sources */,
-				BF9BF21C29BC5103005178FB /* CustomTextField.swift in Sources */,
 				BFCB228329BDE84D004DB993 /* TaskViewModel.swift in Sources */,
 				BF9BF21A29BC4EAC005178FB /* HomeView.swift in Sources */,
 				BFCB228129BDE7C2004DB993 /* Task.swift in Sources */,

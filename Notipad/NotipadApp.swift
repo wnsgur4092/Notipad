@@ -12,6 +12,7 @@ struct NotipadApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(TaskViewModel())
         }
     }
 }

@@ -28,6 +28,7 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
     
     override init(){
         super.init()
+        self.fetchTask()
    
         print("-----> \(Realm.Configuration.defaultConfiguration.fileURL!)")
         
@@ -40,6 +41,7 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
         }.store(in: &subscription)
         
         UNUserNotificationCenter.current().delegate = self
+  
     }
     
     //MARK: - FUNCTION
@@ -51,6 +53,16 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
     func updateTaskDate(date: Date){
         self.task.date = date
     }
+    
+    
+    //MARK: - REALM
+    func fetchTask() {
+        guard let realm = realm else { return }
+        let results = realm.objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+        tasks = Array(results)
+    }
+
+
     
     //Save Data in Realm
     func saveTask() {
@@ -65,19 +77,43 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
         task = Task()
         
         eraseForm()
-        
-        
     }
     
     //Delete Data in Realm
+//    func deleteTask(){
+//        func deleteTask(at offsets: IndexSet) {
+//            guard let realm = realm else { return }
+//            do {
+//                try realm.write {
+//                    // Delete the selected tasks from the realm database
+//                    realm.delete(offsets.map { self.tasks[$0] })
+//                }
+//            } catch {
+//                print("Error deleting tasks: \(error)")
+//            }
+//        }
+//    }
+    func deleteTask(task: Task) {
+        guard let realm = realm else { return }
+        do {
+            try realm.write {
+                realm.delete(task)
+            }
+        } catch {
+            print("Error deleting task: \(error)")
+        }
         
+        fetchTask()
+    }
+    
+    
+    
     
     //initialise
     func eraseForm() {
         taskName = ""
         task = Task() // 새로운 빈 Task로 재설정
     }
-    
     
     func askPermission(){
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { success, error in
@@ -101,7 +137,7 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
         
         let content = UNMutableNotificationContent()
         content.title = title
-        content.body = taskName // 수정된 부분
+        content.body = taskName 
         content.sound = UNNotificationSound.default
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
@@ -109,6 +145,8 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
     }
 
 
+
+    
 
     
     // 포그라운드에서 알림을 표시하는 함수

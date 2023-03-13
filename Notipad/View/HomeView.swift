@@ -10,13 +10,14 @@ import UserNotifications
 
 struct HomeView: View {
     //MARK: - PROPERTIES
-    @StateObject var taskViewModel : TaskViewModel = TaskViewModel()
+    @EnvironmentObject var taskViewModel : TaskViewModel 
     
     @State var isFocusing : Bool = false
+    @State var historyViewPresented : Bool = false
     
     //MARK: - BODY
     var body: some View {
-
+        NavigationStack{
             VStack{
                 title
                 
@@ -30,6 +31,12 @@ struct HomeView: View {
             }
             .padding(.horizontal,32)
             .padding(.vertical, 20)
+        }
+        .fullScreenCover(isPresented: $historyViewPresented) {
+            HistoryView()
+                .environmentObject(TaskViewModel())
+        }
+
     }
     
     //MARK: - COMPONENTS
@@ -42,6 +49,7 @@ struct HomeView: View {
             
             Button {
                 print("List Tapped")
+                self.historyViewPresented = true
             } label: {
                 Image(systemName: "list.bullet")
             }
@@ -55,11 +63,9 @@ struct HomeView: View {
                 TextField("Enter ", text: $taskViewModel.taskName)
                 
                 Button {
-                    taskViewModel.sendNotification(date: Date(), type: "time", timeInterval: 0.2, title: "Notipad", body: $taskViewModel.taskName.wrappedValue)
+                    taskViewModel.sendNotification(date: Date(), type: "time", timeInterval: 0.2, title: "Notipad", body: taskViewModel.taskName)
                     
                     taskViewModel.saveTask()
-      
-
 
                 } label: {
                     Image(systemName: "paperplane.circle.fill")
