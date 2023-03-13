@@ -113,7 +113,8 @@ class TaskViewModel : NSObject, ObservableObject, UNUserNotificationCenterDelega
     
     // 포그라운드에서 알림을 표시하는 함수
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .sound, .badge])
+        completionHandler([.banner, .sound, .badge, .list]) // 알림 센터에 유지되도록 .list 옵션 추가
     }
+
     
 }
